@@ -1,0 +1,37 @@
+[
+    {
+        "model": "raterapi.category",
+        "pk": 1,
+        "fields": {
+            "name": "Strategy"
+        }
+    },
+    {
+        "model": "raterapi.category",
+        "pk": 2,
+        "fields": {
+            "name": "Party"
+        }
+    },
+    {
+        "model": "raterapi.category",
+        "pk": 3,
+        "fields": {
+            "name": "Cooperative"
+        }
+    },
+    {
+        "model": "raterapi.category",
+        "pk": 4,
+        "fields": {
+            "name": "Tile-placement"
+        }
+    },
+    {
+        "model": "raterapi.category",
+        "pk": 5,
+        "fields": {
+            "name": "Family"
+        }
+    }
+]
