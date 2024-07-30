@@ -1,0 +1,56 @@
+[
+    {
+        "model": "raterapi.player",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "first_name": "Ryan",
+            "last_name": "Tanay"
+        }
+    },
+    {
+        "model": "raterapi.player",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "first_name": "Meg",
+            "last_name": "Ducharme"
+        }
+    },
+    {
+        "model": "raterapi.player",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "first_name": "Jenna",
+            "last_name": "Solis"
+        }
+    },
+    {
+        "model": "raterapi.player",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "first_name": "Bryan",
+            "last_name": "Nilson"
+        }
+    },
+    {
+        "model": "raterapi.player",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "first_name": "Emily",
+            "last_name": "Lemmon"
+        }
+    },
+    {
+        "model": "raterapi.player",
+        "pk": 6,
+        "fields": {
+            "user": 6,
+            "first_name": "Tyler",
+            "last_name": "Hilliard"
+        }
+    }
+]

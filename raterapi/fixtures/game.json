@@ -1,0 +1,132 @@
+[
+    {
+        "model": "raterapi.game",
+        "pk": 1,
+        "fields": {
+            "title": "Catan",
+            "description": "A popular strategy game",
+            "designer": "Klaus Teuber",
+            "year_released": "1995-01-01T00:00:00Z",
+            "num_of_players": 4,
+            "estimated_play_time": 60,
+            "age_recommendation": 10
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 2,
+        "fields": {
+            "title": "Ticket to Ride",
+            "description": "A railway-themed board game",
+            "designer": "Alan R. Moon",
+            "year_released": "2004-01-01T00:00:00Z",
+            "num_of_players": 2,
+            "estimated_play_time": 120,
+            "age_recommendation": 8
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 3,
+        "fields": {
+            "title": "Codenames",
+            "description": "A word-based party game",
+            "designer": "Vlaada Chvátil",
+            "year_released": "2015-01-01T00:00:00Z",
+            "num_of_players": 4,
+            "estimated_play_time": 15,
+            "age_recommendation": 14
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 4,
+        "fields": {
+            "title": "Pandemic",
+            "description": "A cooperative game to stop global outbreaks",
+            "designer": "Matt Leacock",
+            "year_released": "2008-01-01T00:00:00Z",
+            "num_of_players": 2,
+            "estimated_play_time": 45,
+            "age_recommendation": 8
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 5,
+        "fields": {
+            "title": "7 Wonders",
+            "description": "A game of ancient civilizations",
+            "designer": "Antoine Bauza",
+            "year_released": "2010-01-01T00:00:00Z",
+            "num_of_players": 7,
+            "estimated_play_time": 30,
+            "age_recommendation": 10
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 6,
+        "fields": {
+            "title": "Terraforming Mars",
+            "description": "A game about transforming Mars into a habitable planet",
+            "designer": "Jacob Fryxelius",
+            "year_released": "2016-01-01T00:00:00Z",
+            "num_of_players": 5,
+            "estimated_play_time": 120,
+            "age_recommendation": 12
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 7,
+        "fields": {
+            "title": "Splendor",
+            "description": "A game about trading gems in the Renaissance",
+            "designer": "Marc André",
+            "year_released": "2014-01-01T00:00:00Z",
+            "num_of_players": 4,
+            "estimated_play_time": 30,
+            "age_recommendation": 10
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 8,
+        "fields": {
+            "title": "Azul",
+            "description": "A tile-placement game inspired by Portuguese azulejos",
+            "designer": "Michael Kiesling",
+            "year_released": "2017-01-01T00:00:00Z",
+            "num_of_players": 4,
+            "estimated_play_time": 30,
+            "age_recommendation": 8
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 9,
+        "fields": {
+            "title": "Gloomhaven",
+            "description": "A cooperative dungeon-crawler game",
+            "designer": "Isaac Childres",
+            "year_released": "2017-01-01T00:00:00Z",
+            "num_of_players": 4,
+            "estimated_play_time": 120,
+            "age_recommendation": 14
+        }
+    },
+    {
+        "model": "raterapi.game",
+        "pk": 10,
+        "fields": {
+            "title": "Scythe",
+            "description": "A game set in an alternate-history 1920s",
+            "designer": "Jamey Stegmaier",
+            "year_released": "2016-01-01T00:00:00Z",
+            "num_of_players": 7,
+            "estimated_play_time": 115,
+            "age_recommendation": 14
+        }
+    }
+]

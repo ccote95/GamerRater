@@ -7,4 +7,9 @@ python3 manage.py makemigrations raterapi
 python3 manage.py migrate raterapi
 python3 manage.py loaddata users
 python3 manage.py loaddata tokens
+python3 manage.py loaddata category
+python3 manage.py loaddata game
+python3 manage.py loaddata gameCategory
+python3 manage.py loaddata player
+
 
