@@ -7,7 +7,7 @@ import logging
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation')
+        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories')
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,3 +42,26 @@ class GameView(ViewSet):
         except Exception as e:
             logger.error(f"Error retrieving game: {str(e)}")
             return Response({"detail": "An error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def create(self, request):
+        title = request.data.get('title')
+        designer = request.data.get('designer')
+        year_released = request.data.get('year_released') 
+        num_of_players = request.data.get('num_of_players')
+        estimated_play_time = request.data.get('estimated_play_time')
+        age_recommendation = request.data.get('age_recommendation')
+
+        game = Game.objects.create(
+            title = title,
+            designer = designer,
+            year_released = year_released,
+            num_of_players = num_of_players,
+            estimated_play_time = estimated_play_time,
+            age_recommendation = age_recommendation
+        )
+
+        category_ids = request.data.get('categories',[])
+        game.categories.set(category_ids)
+
+        serializer = GameSerializer(game, context ={'request': request})
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
