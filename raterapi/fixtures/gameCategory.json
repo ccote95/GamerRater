@@ -1,37 +1,42 @@
 [
     {
-        "model": "raterapi.category",
+        "model": "raterapi.gamecategory",
         "pk": 1,
         "fields": {
-            "name": "Strategy"
+            "game": 1,
+            "category":1
         }
     },
     {
-        "model": "raterapi.category",
+        "model": "raterapi.gamecategory",
         "pk": 2,
         "fields": {
-            "name": "Party"
+            "game": 2,
+            "category":2
         }
     },
     {
-        "model": "raterapi.category",
+        "model": "raterapi.gamecategory",
         "pk": 3,
         "fields": {
-            "name": "Cooperative"
+            "game": 3,
+            "category":3
         }
     },
     {
-        "model": "raterapi.category",
+        "model": "raterapi.gamecategory",
         "pk": 4,
         "fields": {
-            "name": "Tile-placement"
+            "game": 4,
+            "category":4
         }
     },
     {
-        "model": "raterapi.category",
+        "model": "raterapi.gamecategory",
         "pk": 5,
         "fields": {
-            "name": "Family"
+            "game": 5,
+            "category":5
         }
     }
 ]
