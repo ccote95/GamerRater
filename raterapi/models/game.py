@@ -8,6 +8,11 @@ class Game(models.Model):
     num_of_players = models.IntegerField()
     estimated_play_time = models.IntegerField()
     age_recommendation = models.IntegerField()
+    categories = models.ManyToManyField(
+        "Category",
+        through = 'gameCategory',
+        related_name="games"
+    )
 
     def __str__(self):
         return self.title
