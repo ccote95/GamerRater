@@ -17,3 +17,11 @@ class GameView(ViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
             return HttpResponseServerError(ex)
+        
+    def retrieve(self, request, pk=None):
+        try:
+            game = Game.objects.get(pk=pk)
+            serializer = GameSerializer(game, context={'request': request})
+            return Response(serializer.data)
+        except Game.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
