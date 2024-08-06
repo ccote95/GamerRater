@@ -1,8 +1,8 @@
 from django.db import models
 from .game import Game
-from .player import Player
+from django.contrib.auth.models import User
 
 class GameReview(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.TextField()
