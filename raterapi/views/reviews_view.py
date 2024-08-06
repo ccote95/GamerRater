@@ -14,10 +14,10 @@ class ReviewUserSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name')
 
 class ReviewSerializer(serializers.ModelSerializer):
-    player_id = ReviewUserSerializer(many=False)
+    player = ReviewUserSerializer(many=False)
     class Meta:
         model= GameReview
-        fields = ('id', 'review', 'player_id', 'game_id')
+        fields = ('id', 'review', 'player', 'game_id')
 
 class ReviewView(ViewSet):
     def create(self, request):
@@ -39,8 +39,12 @@ class ReviewView(ViewSet):
         return Response(serializer.data, status= status.HTTP_201_CREATED)
     
     def list(self, request):
+        game = self.request.query_params.get("game", None)
         try:
-            reviews = GameReview.objects.all()
+            if game is not None:
+                reviews = GameReview.objects.filter(game_id = game)
+            else:
+                reviews = GameReview.objects.all()
             serializer = ReviewSerializer(reviews,many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
