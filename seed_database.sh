@@ -11,5 +11,7 @@ python3 manage.py loaddata category
 python3 manage.py loaddata game
 python3 manage.py loaddata gameCategory
 python3 manage.py loaddata player
+python3 manage.py loaddata gameReview
+
 
 
