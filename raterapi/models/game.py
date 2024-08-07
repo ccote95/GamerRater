@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Game(models.Model):
     title = models.CharField(max_length=255)
@@ -8,6 +9,7 @@ class Game(models.Model):
     num_of_players = models.IntegerField()
     estimated_play_time = models.IntegerField()
     age_recommendation = models.IntegerField()
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ManyToManyField(
         "Category",
         through = 'gameCategory',

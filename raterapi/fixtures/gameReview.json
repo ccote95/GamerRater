@@ -1,0 +1,92 @@
+[
+    {
+        "model": "raterapi.gamereview",
+        "pk": 1,
+        "fields": {
+            "review": "Great game with lots of strategy!",
+            "game": 2,
+            "player": 1
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 2,
+        "fields": {
+            "review": "Fun for the whole family.",
+            "game": 2,
+            "player": 2
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 3,
+        "fields": {
+            "review": "Too complicated for my taste.",
+            "game": 3,
+            "player": 3
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 4,
+        "fields": {
+            "review": "A classic. Must have!",
+            "game": 4,
+            "player": 4
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 5,
+        "fields": {
+            "review": "Not very engaging.",
+            "game": 5,
+            "player": 5
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 6,
+        "fields": {
+            "review": "Loved the mechanics and game play.",
+            "game": 6,
+            "player": 6
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 7,
+        "fields": {
+            "review": "It's okay, nothing special.",
+            "game": 7,
+            "player": 1
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 8,
+        "fields": {
+            "review": "Very immersive and exciting.",
+            "game": 8,
+            "player": 2
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 9,
+        "fields": {
+            "review": "Not my cup of tea.",
+            "game": 9,
+            "player": 3
+        }
+    },
+    {
+        "model": "raterapi.gamereview",
+        "pk": 10,
+        "fields": {
+            "review": "Highly recommend for strategy lovers.",
+            "game": 10,
+            "player": 4
+        }
+    }
+]

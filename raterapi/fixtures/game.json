@@ -9,7 +9,8 @@
             "year_released": "1995-01-01T00:00:00Z",
             "num_of_players": 4,
             "estimated_play_time": 60,
-            "age_recommendation": 10
+            "age_recommendation": 10,
+            "player_id": 1
         }
     },
     {
@@ -22,7 +23,8 @@
             "year_released": "2004-01-01T00:00:00Z",
             "num_of_players": 2,
             "estimated_play_time": 120,
-            "age_recommendation": 8
+            "age_recommendation": 8,
+            "player_id": 2
         }
     },
     {
@@ -35,7 +37,8 @@
             "year_released": "2015-01-01T00:00:00Z",
             "num_of_players": 4,
             "estimated_play_time": 15,
-            "age_recommendation": 14
+            "age_recommendation": 14,
+            "player_id": 3
         }
     },
     {
@@ -48,7 +51,8 @@
             "year_released": "2008-01-01T00:00:00Z",
             "num_of_players": 2,
             "estimated_play_time": 45,
-            "age_recommendation": 8
+            "age_recommendation": 8,
+            "player_id": 4
         }
     },
     {
@@ -61,7 +65,8 @@
             "year_released": "2010-01-01T00:00:00Z",
             "num_of_players": 7,
             "estimated_play_time": 30,
-            "age_recommendation": 10
+            "age_recommendation": 10,
+            "player_id": 5
         }
     },
     {
@@ -74,7 +79,8 @@
             "year_released": "2016-01-01T00:00:00Z",
             "num_of_players": 5,
             "estimated_play_time": 120,
-            "age_recommendation": 12
+            "age_recommendation": 12,
+            "player_id": 6
         }
     },
     {
@@ -87,7 +93,8 @@
             "year_released": "2014-01-01T00:00:00Z",
             "num_of_players": 4,
             "estimated_play_time": 30,
-            "age_recommendation": 10
+            "age_recommendation": 10,
+            "player_id": 1
         }
     },
     {
@@ -100,7 +107,8 @@
             "year_released": "2017-01-01T00:00:00Z",
             "num_of_players": 4,
             "estimated_play_time": 30,
-            "age_recommendation": 8
+            "age_recommendation": 8,
+            "player_id": 2
         }
     },
     {
@@ -113,7 +121,8 @@
             "year_released": "2017-01-01T00:00:00Z",
             "num_of_players": 4,
             "estimated_play_time": 120,
-            "age_recommendation": 14
+            "age_recommendation": 14,
+            "player_id": 3
         }
     },
     {
@@ -126,7 +135,8 @@
             "year_released": "2016-01-01T00:00:00Z",
             "num_of_players": 7,
             "estimated_play_time": 115,
-            "age_recommendation": 14
+            "age_recommendation": 14,
+            "player_id": 4
         }
     }
 ]
