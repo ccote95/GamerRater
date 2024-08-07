@@ -14,6 +14,12 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('id','name')
 
+class UpdateGameSerializer(serializers.ModelSerializer):
+    is_owner = serializers.SerializerMethodField()
+    class Meta:
+        model = Game
+        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories','is_owner')
+
 class GameView(ViewSet):
     def list(self,request):
         try:   
@@ -65,3 +71,31 @@ class GameView(ViewSet):
 
         serializer = GameSerializer(game, context ={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    def update(self,request,pk=None):
+        try:
+            game = Game.objects.get(pk=pk)
+
+            self.check_object_permissions(request, game)
+
+            serializer = UpdateGameSerializer(data=request.data)
+            if serializer.is_valid():
+                game.title = request.data.get('title')
+                game.designer = request.data.get('designer')
+                game.year_released = request.data.get('year_released') 
+                game.num_of_players = request.data.get('num_of_players')
+                game.estimated_play_time = request.data.get('estimated_play_time')
+                game.age_recommendation = request.data.get('age_recommendation')
+                game.save()
+
+                category_ids = request.data.get('categories', [])
+                game.categories.set(category_ids)
+
+                serializer = UpdateGameSerializer(game, context={'request': request})
+                return Response(None, status.HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        except Game.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+
