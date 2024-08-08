@@ -14,10 +14,14 @@ class ReviewUserSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name')
 
 class ReviewSerializer(serializers.ModelSerializer):
+    is_owner = serializers.SerializerMethodField()
     player = ReviewUserSerializer(many=False)
+
+    def get_is_owner(self,obj):
+        return self.context["request"].user == obj.player
     class Meta:
         model= GameReview
-        fields = ('id', 'review', 'player', 'game_id')
+        fields = ('id', 'review', 'player', 'game_id','is_owner')
 
 class ReviewView(ViewSet):
     def create(self, request):
@@ -44,8 +48,21 @@ class ReviewView(ViewSet):
             if game is not None:
                 reviews = GameReview.objects.filter(game_id = game)
             else:
+                pass
                 reviews = GameReview.objects.all()
-            serializer = ReviewSerializer(reviews,many=True)
+            serializer = ReviewSerializer(reviews,many=True, context = {'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
             return HttpResponseServerError(ex)
+        
+    def destroy(self, request, pk=None):
+        try:
+            review = GameReview.objects.get(pk=pk)
+
+            if review.player != request.user:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            
+            review.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except GameReview.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
