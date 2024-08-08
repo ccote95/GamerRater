@@ -34,7 +34,7 @@ class GameView(ViewSet):
     def list(self,request):
         try:   
             games = Game.objects.all()
-            serializer = GameSerializer(games, many=True)
+            serializer = GameSerializer(games, many=True, context = {"request": request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
             return HttpResponseServerError(ex)
