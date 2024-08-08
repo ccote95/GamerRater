@@ -4,21 +4,31 @@ from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.viewsets import ViewSet
 import logging
-class GameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Game
-        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories')
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id','name')
 
-class UpdateGameSerializer(serializers.ModelSerializer):
+class GameSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
+    categories = CategorySerializer(many=True)
+
+    def get_is_owner(self,obj):
+        return self.context["request"].user == obj.player
     class Meta:
         model = Game
-        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories','is_owner')
+        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories', 'is_owner')
+
+
+
+
+class UpdateGameSerializer(serializers.ModelSerializer):
+    is_owner = serializers.SerializerMethodField()
+    categories = CategorySerializer(many=True)
+
+    class Meta:
+        model = Game
+        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories',)
 
 class GameView(ViewSet):
     def list(self,request):
@@ -42,12 +52,15 @@ class GameView(ViewSet):
             game_data = serializer.data
             game_data['categories'] = category_serializer.data
 
+            is_owner = (request.user == game.player) if game.player else False
+            game_data = serializer.data
+            game_data['is_owner'] = is_owner
+
             return Response(game_data)
         except Game.DoesNotExist:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            logger.error(f"Error retrieving game: {str(e)}")
-            return Response({"detail": "An error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"detail": f"{e}An error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
     def create(self, request):
         title = request.data.get('title')
