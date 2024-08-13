@@ -15,6 +15,21 @@ class Game(models.Model):
         through = 'gameCategory',
         related_name="games"
     )
+    @property
+    def average_rating(self):
+        """Average rating calculated attribute for each game"""
+        ratings = self.ratings.all()
+
+        # Sum all of the ratings for the game
+        if not ratings:
+            return None
+        total_rating = 0
+        for rating in ratings:
+            total_rating += rating.rating
+        average_rating = round((total_rating / len(ratings)), 1)
+        return average_rating
+
+        #return the result
 
     def __str__(self):
         return self.title

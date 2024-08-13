@@ -12,12 +12,13 @@ class CategorySerializer(serializers.ModelSerializer):
 class GameSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     categories = CategorySerializer(many=True)
+    # average_rating = serializers.SerializerMethodField()
 
     def get_is_owner(self,obj):
         return self.context["request"].user == obj.player
     class Meta:
         model = Game
-        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories', 'is_owner')
+        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories', 'is_owner','average_rating')
 
 
 
@@ -44,19 +45,7 @@ class GameView(ViewSet):
             game = Game.objects.get(pk=pk)
             serializer = GameSerializer(game, context={'request': request})
 
-            # Get the categories for the game
-            categories = Category.objects.filter(gamecategory__game=game)
-            category_serializer = CategorySerializer(categories, many=True, context={'request': request})
-
-            # Add categories to the serialized data
-            game_data = serializer.data
-            game_data['categories'] = category_serializer.data
-
-            is_owner = (request.user == game.player) if game.player else False
-            game_data = serializer.data
-            game_data['is_owner'] = is_owner
-
-            return Response(game_data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Game.DoesNotExist:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
