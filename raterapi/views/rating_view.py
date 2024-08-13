@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.viewsets import ViewSet
+from django.shortcuts import get_object_or_404
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,11 +11,16 @@ class RatingSerializer(serializers.ModelSerializer):
         fields = ['id','rating','game','player']
 
 class RatingView(ViewSet):
-    def create(self, request, game_id):
-        game = Game.objects.get(id=game_id)
-        serializer = RatingSerializer(data=request.data)
+    def create(self, request):
+        game_id = request.data.get('game_id')
+        game_instance = get_object_or_404(Game, id=game_id)
+        new_rating = GameRating()
+        new_rating.rating = request.data.get('rating')
+        new_rating.game= game_instance
+        new_rating.player = request.auth.user
+        new_rating.save()
+        serializer = RatingSerializer(new_rating, context = {'request':request})
 
-        if serializer.is_valid():
-            serializer.save(player=request.user, game=game)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+       
