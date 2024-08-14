@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.viewsets import ViewSet
-import logging
+from django.db.models import Q
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -34,7 +34,14 @@ class UpdateGameSerializer(serializers.ModelSerializer):
 class GameView(ViewSet):
     def list(self,request):
         try:   
+            search_text = self.request.query_params.get('q', None)
             games = Game.objects.all()
+            if search_text:
+                games = games.filter(
+                    Q(title__icontains=search_text) |
+                    Q(description__icontains=search_text) |
+                    Q(designer__icontains=search_text)
+            )
             serializer = GameSerializer(games, many=True, context = {"request": request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
