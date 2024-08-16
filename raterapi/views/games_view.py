@@ -35,6 +35,7 @@ class GameView(ViewSet):
     def list(self,request):
         try:   
             search_text = self.request.query_params.get('q', None)
+            order_text = self.request.query_params.get('order_by', None)
             games = Game.objects.all()
             if search_text:
                 games = games.filter(
@@ -42,6 +43,13 @@ class GameView(ViewSet):
                     Q(description__icontains=search_text) |
                     Q(designer__icontains=search_text)
             )
+            if order_text in ['year_released','estimated_play_time','designer']:
+                games = games.order_by(order_text)
+                # games = games.filter(
+                #     Q(year_released__icontains=order_text) |
+                #     Q(estimated_play_time__icontains=order_text) |
+                #     Q(designer__icontains=order_text)
+                # )
             serializer = GameSerializer(games, many=True, context = {"request": request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
