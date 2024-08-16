@@ -16,7 +16,7 @@ class GameSerializer(serializers.ModelSerializer):
    
     def get_has_rated(self,obj):
         user = self.context["request"].user
-        return GameRating.objects.filter(game=obj, player=user).exists()
+        return GameRating.objects.filter(game=obj,player=user).exists()
     def get_is_owner(self,obj):
         return self.context["request"].user == obj.player
     class Meta:
