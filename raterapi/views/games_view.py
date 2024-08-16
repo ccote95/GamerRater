@@ -1,4 +1,4 @@
-from raterapi.models import Game, Category
+from raterapi.models import Game, Category,GameRating
 from rest_framework.response import Response
 from django.http import HttpResponseServerError
 from rest_framework import serializers, status
@@ -12,15 +12,19 @@ class CategorySerializer(serializers.ModelSerializer):
 class GameSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     categories = CategorySerializer(many=True)
-    # average_rating = serializers.SerializerMethodField()
-
+    has_rated = serializers.SerializerMethodField()
+   
+    def get_has_rated(self,obj):
+        user = self.context["request"].user
+        return GameRating.objects.filter(game=obj, player=user).exists()
     def get_is_owner(self,obj):
         return self.context["request"].user == obj.player
     class Meta:
         model = Game
-        fields = ('id','title','description','designer','year_released','num_of_players','estimated_play_time','age_recommendation','categories', 'is_owner','average_rating')
-
-
+        fields = ('id','title','description','designer',
+                  'year_released','num_of_players','estimated_play_time',
+                  'age_recommendation','categories', 'is_owner','average_rating',
+                  'has_rated')
 
 
 class UpdateGameSerializer(serializers.ModelSerializer):
@@ -45,11 +49,6 @@ class GameView(ViewSet):
             )
             if order_text in ['year_released','estimated_play_time','designer']:
                 games = games.order_by(order_text)
-                # games = games.filter(
-                #     Q(year_released__icontains=order_text) |
-                #     Q(estimated_play_time__icontains=order_text) |
-                #     Q(designer__icontains=order_text)
-                # )
             serializer = GameSerializer(games, many=True, context = {"request": request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
